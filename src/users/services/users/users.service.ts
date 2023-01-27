@@ -1,9 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { hash } from 'bcrypt';
+import { User } from 'src/typeorm/entities/User';
 import { CreateUserDto } from 'src/users/dtos/CreateUser.dto';
 import { UpdateUserDto } from 'src/users/dtos/UpdateUser.dto';
-import { User } from 'src/users/typeorm/entities/User';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -12,7 +11,7 @@ export class UsersService {
 
   // get all users
   getUsers() {
-    return this.userRepository.find();
+    return this.userRepository.find({ relations: ['posts']});
   }
 
   // get user by id
