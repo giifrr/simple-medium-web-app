@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/typeorm/entities/User';
+import { PostsModule } from './posts/posts.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { User } from './users/typeorm/entities/User';
       database: 'simple_medium_web',
       entities: [User],
       synchronize: true
-    })
+    }),
+    PostsModule
   ],
   controllers: [],
   providers: [],
